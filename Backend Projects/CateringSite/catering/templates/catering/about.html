@@ -1,0 +1,31 @@
+{% extends "catering/base.html" %}
+{% block head %}
+    <title>{{ title }}</title>
+{% endblock %}
+{% block content %}
+    <section class="py-5">
+    <div class="container">
+        <h1 class="font-weight-light">About our Catering</h1>
+        <p class="lead">Catering for geeks people! My catering site was simulated to take orders in city of Szczecin.
+            I connected orders with Google Maps API to handle distance between my kitchen and customers houses</p>
+    </div>
+    <div class="container">
+        <h1 class="font-weight-light">How it works?</h1>
+        <p class="lead">You as a customer, you can order some diets, to indicated destination. My program is able to
+            calculate
+            distance between my localization and order localization. If is more than 5 km, you need to pay extra value
+            for delivery. If it is more than 10 km, unfortunately we don't deliver :)
+            We don't delivery in holidays and weekend, program handles it too.Your diet can start minimum 3 days from
+            todays date. If you added properly some diets, you need to fill your data information and choose payment
+            method.
+            My program handles normal transfer and simulated Register Request for Przelewy24 payment gate. Orders can be booked as logged
+            and not logged user. That was really much fun and a
+            lot of
+            changes was made here! I hope you enjoy! </p>
+        <p class="lead"> Greetings </p>
+        <p class="lead">Sebastian Szymański </p>
+    </div>
+
+
+{% endblock %}
+</section>

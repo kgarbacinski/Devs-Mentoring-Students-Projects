@@ -1,0 +1,39 @@
+{% extends "catering/base.html" %}
+{% load crispy_forms_filters %}
+
+{% load static %}
+{% block head %}
+    <title>{{ title }}</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <link
+            href="https://fonts.googleapis.com/css?family=Roboto:400,500"
+            rel="stylesheet"
+    />
+
+    <link rel="stylesheet" type="text/css" href="{% static "checkout/css/maps.css" %}"/>
+    <script src="{% static "checkout/js/maps.js" %}"></script>
+
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script
+            src="https://maps.googleapis.com/maps/api/js?key={{ api_key }}&callback=initAutocomplete&libraries=places&v=weekly"
+            async
+    ></script>
+
+
+
+{% endblock %}
+
+{% block content %}
+
+    <form action="" enctype="multipart/form-data" method="POST">
+        {% csrf_token %}
+        {{ form|crispy }}
+
+        <button type="submit" class="my-button">Add</button>
+
+    </form>
+
+{% endblock %}
+
+
+

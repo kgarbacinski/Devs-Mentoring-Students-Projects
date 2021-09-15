@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %} <title>add_invoice</title> {% endblock %}
+{% block style %}
+<style>
+.flashes
+{
+    color: black;
+    font-size: 20px;
+    w3-padding-large
+}
+::placeholder
+{
+    color: black;
+}
+</style>
+{% endblock %}
+
+
+{% block content %}
+    <header class="w3-container w3-blue w3-center" style="padding:128px 25px">
+        <h1 class="w3-margin w3-xxlarge">Enter your invoice details.</h1>
+        <form action="#" method="POST">
+            <div class="table">
+            <input class="w3-large" type="text" name="name" placeholder="Name" required>
+            <input class="w3-large" type="text" name="street" placeholder="Street" required>
+            <input class="w3-large" type="text" name="postal_code" placeholder="Postal Code" required>
+            <input class="w3-large" type="text" name="product_name" placeholder="Product Name" required>
+            <input class="w3-large" type="text" name="quantity" placeholder="Quantity" required>
+            <input class="w3-large" type="text" name="price" placeholder="Price" required>
+            <input class="w3-large" type="date" name="invoice_date" placeholder="Invoice date" required>
+            </div>
+
+            <button class="w3-button w3-green w3-padding-medium w3-large">Submit</button>
+            <div class="flashes">
+                {% for message in get_flashed_messages() %}
+                {{ message }}
+                {% endfor %}
+            </div>
+
+        </form>
+    </header>
+{% endblock %}

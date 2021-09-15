@@ -1,0 +1,18 @@
+{% extends "catering/base.html" %}
+{% block head %}
+    <title>{{ title }}</title>
+{% endblock %}
+{% block content %}
+<div class="media-body">
+                <h2 class="article-title"> This is simulated request </h2>
+                <p class="article-content"> {{ request }}}</p>
+</div>
+
+
+<div class="media-body">
+                <h2 class="article-title"> This is response</h2>
+                <p class="article-content"> {{ response }}</p>
+</div>
+
+
+{% endblock %}
