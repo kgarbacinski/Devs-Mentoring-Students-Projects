@@ -1,0 +1,49 @@
+version: '3'
+
+services:
+  education-platform-for-pythoneers-app:
+    build: .
+    container_name: education-platform-for-pythoneers-app
+    hostname: education-platform-for-pythoneers-app
+    environment:
+      - PYTHONUNBUFFERED=1
+      - DJANGO_SETTINGS_MODULE=education_platform_for_pythoneers.settings_docker
+    entrypoint: [ "/bin/sh","-c" ]
+    command:
+      - |
+        python manage.py makemigrations
+        python manage.py migrate && python manage.py migrate --run-syncdb
+        python setup_docker.py
+        python manage.py runserver 0.0.0.0:8000
+    ports:
+      - "8000:8000"
+    depends_on:
+      education-platform-for-pythoneers-db:
+        condition: service_healthy
+
+  education-platform-for-pythoneers-db:
+    image: postgres:12.5
+    container_name: education-platform-for-pythoneers-db
+    hostname: education-platform-for-pythoneers-db
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 5s
+      timeout: 30s
+      retries: 6
+    restart: always
+
+  education-platform-for-pythoneers-tests:
+    image: selenium/standalone-chrome
+    container_name: education-platform-for-pythoneers-tests
+    hostname: education-platform-for-pythoneers-tests
+    ports:
+      - "4444:4444"
+    restart: always
